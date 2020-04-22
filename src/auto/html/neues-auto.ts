@@ -16,11 +16,7 @@
  */
 
 import type { Request, Response } from 'express';
-import { BuchService } from '../service/buch.service';
 
-const buchService = new BuchService();
-
-export const suche = async (_: Request, res: Response) => {
-    const buecher = await buchService.find();
-    res.render('suche', { title: 'Suche', buecher });
+export const neuesAuto = (_: Request, res: Response) => {
+    res.render('neues-auto', { title: 'Neues Buch' });
 };

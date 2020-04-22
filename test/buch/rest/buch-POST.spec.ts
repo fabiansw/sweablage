@@ -17,8 +17,8 @@
 
 /* globals describe, expect, test, beforeAll, afterAll */
 
-import { BuchArt, Verlag } from '../../../src/buch/entity';
-import type { Buch } from '../../../src/buch/entity/types';
+import { BuchArt, Verlag } from '../../../src/auto/entity';
+import type { Buch } from '../../../src/auto/entity/types';
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
 import type { Server } from 'http';
@@ -83,7 +83,7 @@ const loginDaten: object = {
 // -----------------------------------------------------------------------------
 // T e s t s
 // -----------------------------------------------------------------------------
-const path = PATHS.buecher;
+const path = PATHS.autos;
 const loginPath = PATHS.login;
 let server: Server;
 

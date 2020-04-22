@@ -68,7 +68,7 @@ export const buchSchema = new Schema(
 buchSchema.plugin(optimistic);
 
 // Methoden zum Schema hinzufuegen, damit sie spaeter beim Model (s.u.)
-// verfuegbar sind, was aber bei buch.check() zu eines TS-Syntaxfehler fuehrt:
+// verfuegbar sind, was aber bei auto.check() zu eines TS-Syntaxfehler fuehrt:
 // schema.methods.check = () => {...}
 // schema.statics.findByTitel =
 //     (titel: string, cb: Function) =>

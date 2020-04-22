@@ -29,7 +29,7 @@
 
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
-import type { BuchData } from '../../../src/buch/entity/types';
+import type { BuchData } from '../../../src/auto/entity/types';
 import type { Server } from 'http';
 import chai from 'chai';
 import { createTestserver } from '../../createTestserver';
@@ -43,7 +43,7 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // -----------------------------------------------------------------------------
 // T e s t s e r v e r   m i t   H T T P   u n d   R a n d o m   P o r t
 // -----------------------------------------------------------------------------
-const path = PATHS.buecher;
+const path = PATHS.autos;
 let server: Server;
 
 // Test-Suite

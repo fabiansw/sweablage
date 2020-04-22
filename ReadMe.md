@@ -1,6 +1,6 @@
 # Hinweise zum Programmierbeispiel
 
-blabla
+alel
 
 <Juergen.Zimmermann@HS-Karlsruhe.de>
 

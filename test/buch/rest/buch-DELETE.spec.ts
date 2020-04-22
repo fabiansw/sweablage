@@ -42,7 +42,7 @@ const loginDaten: object = {
 // -----------------------------------------------------------------------------
 // T e s t s
 // -----------------------------------------------------------------------------
-const path = PATHS.buecher;
+const path = PATHS.autos;
 const loginPath = PATHS.login;
 let server: Server;
 

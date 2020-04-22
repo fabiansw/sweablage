@@ -283,7 +283,7 @@ export class BuchService {
 
         // Weitere Methoden von mongoose zum Aktualisieren:
         //    Buch.findOneAndUpdate(update)
-        //    buch.update(bedingung)
+        //    auto.update(bedingung)
         return Promise.resolve(result);
     }
 

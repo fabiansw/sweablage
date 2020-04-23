@@ -18,7 +18,6 @@
 /* globals describe, expect, test, beforeAll, afterAll */
 
 import { AutoArt, Hersteller } from '../../../src/auto/entity';
-import type { Auto } from '../../../src/auto/entity/types';
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
 import type { Server } from 'http';
@@ -34,45 +33,48 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const neuesBuch: Auto = {
-    modell: 'Neu',
+const geaendertesAuto: object = {
+    // isbn wird nicht geaendet
+    titel: 'Geaendert',
     rating: 1,
     art: AutoArt.AUTOMATIK,
-    hersteller: Hersteller.VW_HERSTELLER,
-    preis: 99.99,
-    premium: 0.099,
+    verlag: Hersteller.VW_HERSTELLER,
+    preis: 33.33,
+    premium: 0.033,
     lieferbar: true,
-    datum: '2016-02-28',
-    seriennr: '0-0070-0644-6',
-    homepage: 'https://test.de/',
+    datum: '2016-02-03',
+    homepage: 'https://test.te',
+    autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
     assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
-    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
 };
-const neuesBuchInvalid: object = {
-    titel: 'Blabla',
+const idVorhanden = '00000000-0000-0000-0000-000000000003';
+
+const geaendertesAutoIdNichtVorhanden: object = {
+    titel: 'Nichtvorhanden',
+    rating: 1,
+    art: AutoArt.AUTOMATIK,
+    verlag: Hersteller.VW_HERSTELLER,
+    preis: 33.33,
+    premium: 0.033,
+    lieferbar: true,
+    datum: '2016-02-03',
+    autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
+};
+const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
+
+const geaendertesAutoInvalid: object = {
+    titel: 'Alpha',
     rating: -1,
     art: 'UNSICHTBAR',
     verlag: 'NO_VERLAG',
-    preis: 0,
+    preis: 0.01,
     premium: 0,
     lieferbar: true,
     datum: '2016-02-01',
     seriennr: 'falsche-ISBN',
     autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
     assistenzsysteme: [],
-};
-const neuesBuchTitelExistiert: Auto = {
-    modell: 'Alpha',
-    rating: 1,
-    art: AutoArt.AUTOMATIK,
-    hersteller: Hersteller.VW_HERSTELLER,
-    preis: 99.99,
-    premium: 0.099,
-    lieferbar: true,
-    datum: '2016-02-28',
-    seriennr: '0-0070-9732-8',
-    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
-    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 
 const loginDaten: object = {
@@ -88,7 +90,7 @@ const loginPath = PATHS.login;
 let server: Server;
 
 // Test-Suite
-describe('POST /buecher', () => {
+describe('PUT /autos/:id', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => (server = await createTestserver()));
 
@@ -99,8 +101,8 @@ describe('POST /buecher', () => {
         await new Promise(resolve => setTimeout(() => resolve(), 1000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
     });
 
-    test('Neues Buch', async () => {
-        // given: neuesBuch
+    test('Vorhandenes Auto aendern', async () => {
+        // given: geaendertesAuto
         let response = await request(server)
             .post(`${loginPath}`)
             .set('Content-type', 'application/x-www-form-urlencoded')
@@ -110,32 +112,20 @@ describe('POST /buecher', () => {
 
         // when
         response = await request(server)
-            .post(path)
+            .put(`${path}/${idVorhanden}`)
             .set('Authorization', `Bearer ${token}`)
-            .send(neuesBuch)
+            .set('If-Match', '"0"')
+            .send(geaendertesAuto)
             .trustLocalhost();
 
         // then
-        const { status, header } = response;
-        expect(status).to.be.equal(HttpStatus.CREATED);
-
-        const { location } = header;
-        expect(location).to.exist;
-        expect(typeof location === 'string').to.be.true;
-        expect(location).not.to.be.empty;
-
-        // UUID: Muster von HEX-Ziffern
-        const indexLastSlash: number = location.lastIndexOf('/');
-        const idStr = location.slice(indexLastSlash + 1);
-
-        expect(idStr).to.match(
-            // eslint-disable-next-line max-len
-            /[\dA-Fa-f]{8}-[\dA-Fa-f]{4}-[\dA-Fa-f]{4}-[\dA-Fa-f]{4}-[\dA-Fa-f]{12}/u,
-        );
+        const { status, body } = response;
+        expect(status).to.be.equal(HttpStatus.NO_CONTENT);
+        expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Neues Buch mit ungueltigen Daten', async () => {
-        // given: neuesBuchInvalid
+    test('Nicht-vorhandenes Auto aendern', async () => {
+        // given: geaendertesAutoIdNichtVorhanden
         let response = await request(server)
             .post(`${loginPath}`)
             .set('Content-type', 'application/x-www-form-urlencoded')
@@ -145,9 +135,33 @@ describe('POST /buecher', () => {
 
         // when
         response = await request(server)
-            .post(path)
+            .put(`${path}/${idNichtVorhanden}`)
             .set('Authorization', `Bearer ${token}`)
-            .send(neuesBuchInvalid)
+            .set('If-Match', '"0"')
+            .send(geaendertesAutoIdNichtVorhanden)
+            .trustLocalhost();
+
+        // then
+        const { status, body } = response;
+        expect(status).to.be.equal(HttpStatus.PRECONDITION_FAILED);
+        expect(Object.entries(body)).to.be.empty;
+    });
+
+    test('Vorhandenes Auto aendern, aber mit ungueltigen Daten', async () => {
+        // given: geaendertesAutoInvalid
+        let response = await request(server)
+            .post(`${loginPath}`)
+            .set('Content-type', 'application/x-www-form-urlencoded')
+            .send(loginDaten)
+            .trustLocalhost();
+        const { token } = response.body;
+
+        // when
+        response = await request(server)
+            .put(`${path}/${idVorhanden}`)
+            .set('Authorization', `Bearer ${token}`)
+            .set('If-Match', '"0"')
+            .send(geaendertesAutoInvalid)
             .trustLocalhost();
 
         // then
@@ -156,17 +170,17 @@ describe('POST /buecher', () => {
         const { art, rating, verlag, isbn } = body;
 
         expect(art).to.be.equal(
-            'Die Art eines Buches muss KINDLE oder DRUCKAUSGABE sein.',
+            'Die Art eines Autoes muss Mechanik oder Autokatik sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(verlag).to.be.equal(
-            'Der Verlag eines Buches muss FOO_VERLAG oder BAR_VERLAG sein.',
+            'Der Hersteller eines Autoes muss FOO_VERLAG oder BAR_VERLAG sein.',
         );
-        expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
+        expect(isbn).to.endWith('eine gueltige Seriennummer.');
     });
 
-    test('Neues Buch, aber der Titel existiert bereits', async () => {
-        // given: neuesBuchInvalid
+    test('Vorhandenes Auto aendern, aber ohne Versionsnummer', async () => {
+        // given: geaendertesAutoInvalid
         let response = await request(server)
             .post(`${loginPath}`)
             .set('Content-type', 'application/x-www-form-urlencoded')
@@ -176,24 +190,50 @@ describe('POST /buecher', () => {
 
         // when
         response = await request(server)
-            .post(path)
+            .put(`${path}/${idVorhanden}`)
             .set('Authorization', `Bearer ${token}`)
-            .send(neuesBuchTitelExistiert)
+            .set('Accept', 'text/plain')
+            .send(geaendertesAuto)
             .trustLocalhost();
 
         // then
         const { status, text } = response;
-        expect(status).to.be.equal(HttpStatus.BAD_REQUEST);
-        expect(text).has.string('Titel');
+        expect(status).to.be.equal(HttpStatus.PRECONDITION_REQUIRED);
+        expect(text).to.be.equal('Versionsnummer fehlt');
     });
 
-    test('Neues Buch, aber ohne Token', async () => {
-        // given: neuesBuch
+    test('Vorhandenes Auto aendern, aber mit alter Versionsnummer', async () => {
+        // given: geaendertesAutoInvalid
+        let response = await request(server)
+            .post(`${loginPath}`)
+            .set('Content-type', 'application/x-www-form-urlencoded')
+            .send(loginDaten)
+            .trustLocalhost();
+        const { token } = response.body;
+
+        // when
+        response = await request(server)
+            .put(`${path}/${idVorhanden}`)
+            .set('Authorization', `Bearer ${token}`)
+            .set('If-Match', '"-1"')
+            .set('Accept', 'text/plain')
+            .send(geaendertesAuto)
+            .trustLocalhost();
+
+        // then
+        const { status, text } = response;
+        expect(status).to.be.equal(HttpStatus.PRECONDITION_FAILED);
+        expect(text).to.have.string('Die Versionsnummer');
+    });
+
+    test('Vorhandenes Auto aendern, aber ohne Token', async () => {
+        // given: geaendertesAuto
 
         // when
         const response = await request(server)
-            .post(path)
-            .send(neuesBuch)
+            .put(`${path}/${idVorhanden}`)
+            .set('If-Match', '"0"')
+            .send(geaendertesAuto)
             .trustLocalhost();
 
         // then
@@ -202,15 +242,16 @@ describe('POST /buecher', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Neues Buch, aber mit falschem Token', async () => {
-        // given: neuesBuch
+    test('Vorhandenes Auto aendern, aber mit falschem Token', async () => {
+        // given: geaendertesAuto
         const falscherToken = 'x';
 
         // when
         const response = await request(server)
-            .post(path)
+            .put(`${path}/${idVorhanden}`)
             .set('Authorization', `Bearer ${falscherToken}`)
-            .send(neuesBuch)
+            .set('If-Match', '"0"')
+            .send(geaendertesAuto)
             .trustLocalhost();
 
         // then
@@ -218,6 +259,4 @@ describe('POST /buecher', () => {
         expect(status).to.be.equal(HttpStatus.UNAUTHORIZED);
         expect(Object.entries(body)).to.be.empty;
     });
-
-    test.todo('Test mit abgelaufenem Token');
 });

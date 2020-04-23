@@ -44,7 +44,7 @@ const path = PATHS.autos;
 let server: Server;
 
 // Test-Suite
-describe('GET /buecher/:id', () => {
+describe('GET /auto/:id', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => (server = await createTestserver()));
 
@@ -55,7 +55,7 @@ describe('GET /buecher/:id', () => {
         await new Promise(resolve => setTimeout(() => resolve(), 1000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
     });
 
-    test('Buch zu vorhandener ID', async () => {
+    test('Auto zu vorhandener ID', async () => {
         // when
         const response = await request(server)
             .get(`${path}/${idVorhanden}`)
@@ -69,7 +69,7 @@ describe('GET /buecher/:id', () => {
         expect(body._links.self.href).to.endWith(`/${idVorhanden}`);
     });
 
-    test('Kein Buch zu nicht-vorhandener ID', async () => {
+    test('Kein Auto zu nicht-vorhandener ID', async () => {
         // when
         const response = await request(server)
             .get(`${path}/${idNichtVorhanden}`)
@@ -83,7 +83,7 @@ describe('GET /buecher/:id', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Buch zu vorhandener ID mit ETag', async () => {
+    test('Auto zu vorhandener ID mit ETag', async () => {
         // when
         const response = await request(server)
             .get(`${path}/${idVorhanden}`)

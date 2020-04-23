@@ -47,7 +47,7 @@ const loginPath = PATHS.login;
 let server: Server;
 
 // Test-Suite
-describe('DELETE /buecher', () => {
+describe('DELETE /autos', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => (server = await createTestserver()));
 
@@ -79,7 +79,7 @@ describe('DELETE /buecher', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Buch loeschen, aber ohne Token', async () => {
+    test('Auto loeschen, aber ohne Token', async () => {
         // given: idDeleteVorhanden
 
         // when
@@ -93,8 +93,8 @@ describe('DELETE /buecher', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Buch loeschen, aber mit falschem Token', async () => {
-        // given: geaendertesBuch
+    test('Auto loeschen, aber mit falschem Token', async () => {
+        // given: geaendertesAuto
         const falscherToken = 'x';
 
         // when

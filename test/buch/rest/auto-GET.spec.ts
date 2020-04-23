@@ -47,7 +47,7 @@ const path = PATHS.autos;
 let server: Server;
 
 // Test-Suite
-describe('GET /buecher', () => {
+describe('GET /autos', () => {
     beforeAll(async () => (server = await createTestserver()));
 
     afterAll(async () => {
@@ -57,7 +57,7 @@ describe('GET /buecher', () => {
         await new Promise(resolve => setTimeout(() => resolve(), 1000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
     });
 
-    test('Alle Buecher', async () => {
+    test('Alle Autos', async () => {
         // when
         const response = await request(server).get(path).trustLocalhost();
 
@@ -70,7 +70,7 @@ describe('GET /buecher', () => {
         expect(body).not.to.be.empty;
     });
 
-    test('Buecher mit einem Titel, der ein "a" enthaelt', async () => {
+    test('Autos mit einem Titel, der ein "a" enthaelt', async () => {
         // given
         const teilTitel = 'a';
 
@@ -86,13 +86,13 @@ describe('GET /buecher', () => {
         // response.body ist ein JSON-Array mit mind. 1 JSON-Objekt
         expect(body).not.to.be.empty;
 
-        // Jedes Buch hat einen Titel mit dem Teilstring 'a'
-        body.map((buch: AutoData) => buch.modell).forEach((titel: string) =>
+        // Jedes Auto hat einen Titel mit dem Teilstring 'a'
+        body.map((auto: AutoData) => auto.modell).forEach((titel: string) =>
             expect(titel).to.have.string(teilTitel),
         );
     });
 
-    test('Keine Buecher mit einem Titel, der "XX" enthaelt', async () => {
+    test('Keine Autos mit einem Titel, der "XX" enthaelt', async () => {
         // given
         const teilTitel = 'XX';
 
@@ -108,7 +108,7 @@ describe('GET /buecher', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Mind. 1 Buch mit dem Schlagwort "javascript"', async () => {
+    test('Mind. 1 Auto mit dem Schlagwort "javascript"', async () => {
         // given
         const schlagwort = 'javascript';
 
@@ -124,15 +124,15 @@ describe('GET /buecher', () => {
         // JSON-Array mit mind. 1 JSON-Objekt
         expect(body).not.to.be.empty;
 
-        // Jedes Buch hat im Array der Schlagwoerter "javascript"
+        // Jedes Auto hat im Array der Schlagwoerter "javascript"
         body.map(
-            (buch: AutoData) => buch.assistenzsysteme,
+            (auto: AutoData) => auto.assistenzsysteme,
         ).forEach((s: Array<string>) =>
             expect(s).to.include(schlagwort.toUpperCase()),
         );
     });
 
-    test('Keine Buecher mit dem Schlagwort "csharp"', async () => {
+    test('Keine Autos mit dem Schlagwort "csharp"', async () => {
         // given
         const schlagwort = 'csharp';
 

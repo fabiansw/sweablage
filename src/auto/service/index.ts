@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './buch-file.service';
-export * from './buch.service';
+export * from './auto-file.service';
+export * from './autoService';
 export * from './exceptions';
 export * from './mock';

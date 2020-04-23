@@ -15,23 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchArt, Verlag } from './../../entity';
-import type { BuchData } from './../../entity/types';
+import { AutoArt, Hersteller } from './../../entity';
+import type { AutoData } from './../../entity/types';
 
-export const buch: BuchData = {
+export const auto: AutoData = {
     _id: '00000000-0000-0000-0000-000000000001',
-    titel: 'Alpha',
+    modell: 'Golf',
     rating: 4,
-    art: BuchArt.DRUCKAUSGABE,
-    verlag: Verlag.FOO_VERLAG,
+    art: AutoArt.AUTOMATIK,
+    hersteller: Hersteller.VW_HERSTELLER,
     preis: 11.1,
-    rabatt: 0.011,
+    premium: 0.011,
     lieferbar: true,
     datum: new Date('2018-02-01T00:00:00.000Z'),
-    isbn: '000-0-00000-000-1',
+    seriennr: '000-0-00000-000-1',
     homepage: 'https://acme.at/',
-    schlagwoerter: ['JAVASCRIPT'],
-    autoren: [
+    assistenzsysteme: ['TEMPOMAT'],
+    autohaeuser: [
         {
             nachname: 'Alpha',
             vorname: 'Adriana',
@@ -46,22 +46,22 @@ export const buch: BuchData = {
     updatedAt: 0,
 };
 
-export const buecher: Array<BuchData> = [
-    buch,
+export const autos: Array<AutoData> = [
+    auto,
     {
         _id: '00000000-0000-0000-0000-000000000002',
-        titel: 'Beta',
+        modell: 'Polo',
         rating: 2,
-        art: BuchArt.KINDLE,
-        verlag: Verlag.FOO_VERLAG,
+        art: AutoArt.MECHANIK,
+        hersteller: Hersteller.VW_HERSTELLER,
         preis: 22.2,
-        rabatt: 0.022,
+        premium: 0.022,
         lieferbar: true,
         datum: new Date('2018-02-02T00:00:00.000Z'),
-        isbn: '000-0-00000-000-2',
+        seriennr: '000-0-00000-000-2',
         homepage: 'https://acme.biz/',
-        schlagwoerter: ['TYPESCRIPT'],
-        autoren: [
+        assistenzsysteme: ['AUTOPILOT'],
+        autohaeuser: [
             {
                 nachname: 'Beta',
                 vorname: 'Brunhilde',

@@ -17,8 +17,8 @@
 
 /* globals describe, expect, test, beforeAll, afterAll */
 
-import { BuchArt, Verlag } from '../../../src/auto/entity';
-import type { Buch } from '../../../src/auto/entity/types';
+import { AutoArt, Hersteller } from '../../../src/auto/entity';
+import type { Auto } from '../../../src/auto/entity/types';
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
 import type { Server } from 'http';
@@ -34,19 +34,19 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const neuesBuch: Buch = {
-    titel: 'Neu',
+const neuesBuch: Auto = {
+    modell: 'Neu',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
-    verlag: Verlag.FOO_VERLAG,
+    art: AutoArt.AUTOMATIK,
+    hersteller: Hersteller.VW_HERSTELLER,
     preis: 99.99,
-    rabatt: 0.099,
+    premium: 0.099,
     lieferbar: true,
     datum: '2016-02-28',
-    isbn: '0-0070-0644-6',
+    seriennr: '0-0070-0644-6',
     homepage: 'https://test.de/',
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
-    autoren: [{ nachname: 'Test', vorname: 'Theo' }],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
+    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
 };
 const neuesBuchInvalid: object = {
     titel: 'Blabla',
@@ -54,25 +54,25 @@ const neuesBuchInvalid: object = {
     art: 'UNSICHTBAR',
     verlag: 'NO_VERLAG',
     preis: 0,
-    rabatt: 0,
+    premium: 0,
     lieferbar: true,
     datum: '2016-02-01',
-    isbn: 'falsche-ISBN',
-    autoren: [{ nachname: 'Test', vorname: 'Theo' }],
-    schlagwoerter: [],
+    seriennr: 'falsche-ISBN',
+    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
+    assistenzsysteme: [],
 };
-const neuesBuchTitelExistiert: Buch = {
-    titel: 'Alpha',
+const neuesBuchTitelExistiert: Auto = {
+    modell: 'Alpha',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
-    verlag: Verlag.FOO_VERLAG,
+    art: AutoArt.AUTOMATIK,
+    hersteller: Hersteller.VW_HERSTELLER,
     preis: 99.99,
-    rabatt: 0.099,
+    premium: 0.099,
     lieferbar: true,
     datum: '2016-02-28',
-    isbn: '0-0070-9732-8',
-    autoren: [{ nachname: 'Test', vorname: 'Theo' }],
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
+    seriennr: '0-0070-9732-8',
+    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 
 const loginDaten: object = {

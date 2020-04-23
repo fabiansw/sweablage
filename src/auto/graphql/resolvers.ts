@@ -19,11 +19,11 @@ import type {
     IResolverObject,
     IResolvers,
 } from 'graphql-tools/dist/Interfaces';
-import type { Buch } from './../entity/types';
-import { BuchService } from '../service/buch.service';
+import type { Auto } from './../entity/types';
+import { AutoService } from '../service/autoService';
 import { logger } from '../../shared';
 
-const buchService = new BuchService();
+const buchService = new AutoService();
 
 const findBuecher = (titel: string) => {
     const suchkriterium = titel === undefined ? {} : { titel };
@@ -38,12 +38,12 @@ interface IdCriteria {
     id: string;
 }
 
-const createBuch = (buch: Buch) => {
+const createBuch = (buch: Auto) => {
     buch.datum = new Date(buch.datum as string);
     return buchService.create(buch);
 };
 
-const updateBuch = async (buch: Buch) => {
+const updateBuch = async (buch: Auto) => {
     const version = buch.__v ?? 0;
     buch.datum = new Date(buch.datum as string);
     const buchUpdated = await buchService.update(buch, version.toString());
@@ -64,8 +64,8 @@ const query: IResolverObject = {
 };
 
 const mutation: IResolverObject = {
-    createBuch: (_: unknown, buch: Buch) => createBuch(buch),
-    updateBuch: (_: unknown, buch: Buch) => updateBuch(buch),
+    createBuch: (_: unknown, buch: Auto) => createBuch(buch),
+    updateBuch: (_: unknown, buch: Auto) => updateBuch(buch),
     deleteBuch: (_: unknown, { id }: IdCriteria) => deleteBuch(id),
 };
 

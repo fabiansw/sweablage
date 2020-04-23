@@ -18,16 +18,16 @@
  */
 
 import {
-    BuchNotExistsError,
-    BuchService,
-    IsbnExistsError,
-    TitelExistsError,
+    AutoNotExistsError,
+    AutoService,
+    SeriennrExistsError,
+    ModellExistsError,
     ValidationError,
     VersionInvalidError,
 } from '../service';
 import { HttpStatus, getBaseUri, logger, mimeConfig } from '../../shared';
 import type { Request, Response } from 'express';
-import type { BuchData } from '../entity/types';
+import type { AutoData } from '../entity/types';
 import JSON5 from 'json5';
 
 // export bei async und await:
@@ -41,7 +41,7 @@ export class BuchRequestHandler {
     // * InversifyJS https://github.com/inversify/InversifyJS
     // * Node Dependency Injection https://github.com/zazoomauro/node-dependency-injection
     // * BottleJS https://github.com/young-steveo/bottlejs
-    private readonly service = new BuchService();
+    private readonly service = new AutoService();
 
     // vgl Kotlin: Schluesselwort "suspend"
     async findById(req: Request, res: Response) {
@@ -52,7 +52,7 @@ export class BuchRequestHandler {
         const { id } = req.params;
         logger.debug(`BuchRequestHandler.findById(): id=${id}`);
 
-        let buch: BuchData | undefined;
+        let buch: AutoData | undefined;
         try {
             // vgl. Kotlin: Aufruf einer suspend-Function
             buch = await this.service.findById(id);
@@ -102,7 +102,7 @@ export class BuchRequestHandler {
             `BuchRequestHandler.find(): queryParams=${JSON5.stringify(query)}`,
         );
 
-        let buecher: Array<BuchData>;
+        let buecher: Array<AutoData>;
         try {
             buecher = await this.service.find(query);
         } catch (err) {
@@ -156,7 +156,7 @@ export class BuchRequestHandler {
             `BuchRequestHandler.create(): body=${JSON5.stringify(buchData)}`,
         );
 
-        let buchSaved: BuchData;
+        let buchSaved: AutoData;
         try {
             buchSaved = await this.service.create(buchData);
         } catch (err) {
@@ -191,7 +191,7 @@ export class BuchRequestHandler {
             `BuchRequestHandler.update(): buch=${JSON5.stringify(buchData)}`,
         );
 
-        let result: BuchData;
+        let result: AutoData;
         try {
             result = await this.service.update(buchData, version);
         } catch (err) {
@@ -239,7 +239,7 @@ export class BuchRequestHandler {
             return;
         }
 
-        if (err instanceof TitelExistsError || err instanceof IsbnExistsError) {
+        if (err instanceof ModellExistsError || err instanceof SeriennrExistsError) {
             const { name, message } = err;
             logger.debug(
                 `BuchRequestHandler.handleCreateError(): err.name=${name}, message=${message}`,
@@ -295,8 +295,8 @@ export class BuchRequestHandler {
     private handleUpdateError(err: any, res: Response) {
         if (
             err instanceof VersionInvalidError ||
-            err instanceof BuchNotExistsError ||
-            err instanceof TitelExistsError
+            err instanceof AutoNotExistsError ||
+            err instanceof ModellExistsError
         ) {
             const { name, message } = err;
             logger.debug(

@@ -15,39 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { buch, buecher } from './buch';
-import { Buch } from '../../entity/types';
+import { auto, autos } from './auto';
+import { Auto } from '../../entity/types';
 import JSON5 from 'json5';
 import { logger } from '../../../shared';
 import { v4 as uuid } from 'uuid';
 
 /* eslint-disable @typescript-eslint/no-unused-vars,require-await,@typescript-eslint/require-await */
-export class BuchServiceMock {
+export class AutoServiceMock {
     async findById(id: string) {
-        buch._id = id;
-        return buch;
+        auto._id = id;
+        return auto;
     }
 
     async find(_?: any) {
-        return buecher;
+        return autos;
     }
 
-    async create(buchData: Buch) {
-        buchData._id = uuid();
-        logger.info(`Neues Buch: ${JSON5.stringify(buchData)}`);
-        return buchData;
+    async create(autoData: Auto) {
+        autoData._id = uuid();
+        logger.info(`Neues Auto: ${JSON5.stringify(autoData)}`);
+        return autoData;
     }
 
-    async update(buchData: Buch) {
-        if (buchData.__v !== undefined) {
-            buchData.__v++;
+    async update(autoData: Auto) {
+        if (autoData.__v !== undefined) {
+            autoData.__v++;
         }
-        logger.info(`Aktualisiertes Buch: ${JSON5.stringify(buchData)}`);
-        return Promise.resolve(buchData);
+        logger.info(`Aktualisiertes Auto: ${JSON5.stringify(autoData)}`);
+        return Promise.resolve(autoData);
     }
 
     async remove(id: string) {
-        logger.info(`ID des geloeschten Buches: ${id}`);
+        logger.info(`ID des geloeschten Autos: ${id}`);
         return true;
     }
 }

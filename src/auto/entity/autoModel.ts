@@ -31,30 +31,30 @@ import { autoIndex, optimistic } from '../../shared';
 // http://vincit.github.io/objection.js
 
 // https://mongoosejs.com/docs/schematypes.html
-export const buchSchema = new Schema(
+export const autoSchema = new Schema(
     {
         // MongoDB erstellt implizit einen Index fuer _id
         _id: { type: String },
-        titel: { type: String, required: true, unique: true },
+        modell: { type: String, required: true, unique: true },
         rating: { type: Number, min: 0, max: 5 },
-        art: { type: String, enum: ['DRUCKAUSGABE', 'KINDLE'] },
-        verlag: {
+        art: { type: String, enum: ['AUTOMATIK', 'MECHANIK'] },
+        hersteller: {
             type: String,
             required: true,
-            enum: ['FOO_VERLAG', 'BAR_VERLAG'],
+            enum: ['VW_HERSTELLER', 'PORSCHE_HERSTELLER'],
             // es gibt auch
             //  lowercase: true
             //  uppercase: true
         },
         preis: { type: Number, required: true },
-        rabatt: Number,
+        premium: Number,
         lieferbar: Boolean,
         datum: Date,
-        isbn: { type: String, required: true, unique: true, immutable: true },
+        seriennr: { type: String, required: true, unique: true, immutable: true },
         homepage: String,
-        schlagwoerter: { type: [String], sparse: true },
+        assistenzsysteme: { type: [String], sparse: true },
         // "anything goes"
-        autoren: [Schema.Types.Mixed],
+        autohaeuser: [Schema.Types.Mixed],
     },
     {
         toJSON: { getters: true, virtuals: false },
@@ -65,16 +65,16 @@ export const buchSchema = new Schema(
 );
 
 // Optimistische Synchronisation durch das Feld __v fuer die Versionsnummer
-buchSchema.plugin(optimistic);
+autoSchema.plugin(optimistic);
 
 // Methoden zum Schema hinzufuegen, damit sie spaeter beim Model (s.u.)
 // verfuegbar sind, was aber bei auto.check() zu eines TS-Syntaxfehler fuehrt:
 // schema.methods.check = () => {...}
-// schema.statics.findByTitel =
-//     (titel: string, cb: Function) =>
-//         return this.find({titel: titel}, cb)
+// schema.statics.findByModell =
+//     (modell: string, cb: Function) =>
+//         return this.find({modell: modell}, cb)
 
 // Ein Model ist ein uebersetztes Schema und stellt die CRUD-Operationen fuer
 // die Dokumente bereit, d.h. das Pattern "Active Record" wird realisiert.
 // Name des Models = Name der Collection
-export const BuchModel = model('Buch', buchSchema);
+export const AutoModel = model('Auto', autoSchema);

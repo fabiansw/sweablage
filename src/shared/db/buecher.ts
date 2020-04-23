@@ -23,14 +23,14 @@ export const buecher = [
         art: 'DRUCKAUSGABE',
         verlag: 'FOO_VERLAG',
         preis: 11.1,
-        rabatt: 0.011,
+        premium: 0.011,
         lieferbar: true,
         // https://docs.mongodb.com/manual/reference/method/Date
         datum: new Date('2019-02-01'),
-        isbn: '978-3897225831',
+        seriennr: '978-3897225831',
         homepage: 'https://acme..at/',
-        schlagwoerter: ['JAVASCRIPT'],
-        autoren: [
+        assistenzsysteme: ['JAVASCRIPT'],
+        autohaeuser: [
             {
                 nachname: 'Alpha',
                 vorname: 'Adriana',
@@ -51,13 +51,13 @@ export const buecher = [
         art: 'KINDLE',
         verlag: 'BAR_VERLAG',
         preis: 22.2,
-        rabatt: 0.022,
+        premium: 0.022,
         lieferbar: true,
         datum: new Date('2019-02-02'),
-        isbn: '978-3827315526',
+        seriennr: '978-3827315526',
         homepage: 'https://acme..biz/',
-        schlagwoerter: ['TYPESCRIPT'],
-        autoren: [
+        assistenzsysteme: ['TYPESCRIPT'],
+        autohaeuser: [
             {
                 nachname: 'Beta',
                 vorname: 'Brunhilde',
@@ -74,13 +74,13 @@ export const buecher = [
         art: 'DRUCKAUSGABE',
         verlag: 'FOO_VERLAG',
         preis: 33.3,
-        rabatt: 0.033,
+        premium: 0.033,
         lieferbar: true,
         datum: new Date('2019-02-03'),
-        isbn: '978-0201633610',
+        seriennr: '978-0201633610',
         homepage: 'https://acme.com/',
-        schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
-        autoren: [
+        assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
+        autohaeuser: [
             {
                 nachname: 'Gamma',
                 vorname: 'Claus',
@@ -97,13 +97,13 @@ export const buecher = [
         art: 'DRUCKAUSGABE',
         verlag: 'BAR_VERLAG',
         preis: 44.4,
-        rabatt: 0.044,
+        premium: 0.044,
         lieferbar: true,
         datum: new Date('2019-02-04'),
-        isbn: '978-0387534046',
+        seriennr: '978-0387534046',
         homepage: 'https://acme.de/',
-        schlagwoerter: [],
-        autoren: [
+        assistenzsysteme: [],
+        autohaeuser: [
             {
                 nachname: 'Delta',
                 vorname: 'Dieter',
@@ -120,13 +120,13 @@ export const buecher = [
         art: 'KINDLE',
         verlag: 'FOO_VERLAG',
         preis: 55.5,
-        rabatt: 0.055,
+        premium: 0.055,
         lieferbar: true,
         datum: new Date('2019-02-05'),
-        isbn: '978-3824404810',
+        seriennr: '978-3824404810',
         homepage: 'https://acme.es/',
-        schlagwoerter: ['TYPESCRIPT'],
-        autoren: [
+        assistenzsysteme: ['TYPESCRIPT'],
+        autohaeuser: [
             {
                 nachname: 'Epsilon',
                 vorname: 'Elfriede',

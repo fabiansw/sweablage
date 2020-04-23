@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchData } from './buch';
+import { AutoData } from './auto';
 import type { Document } from 'mongoose';
 import { MAX_RATING } from '../../shared';
 import validator from 'validator';
@@ -24,34 +24,34 @@ const { isUUID, isURL, isISBN } = validator;
 
 export interface ValidationErrorMsg {
     id?: string;
-    titel?: string;
+    modell?: string;
     art?: string;
     rating?: string;
-    verlag?: string;
-    isbn?: string;
+    hersteller?: string;
+    seriennr?: string;
     homepage?: string;
 }
 
 /* eslint-disable no-null/no-null */
-export const validateBuch = (buch: Document) => {
+export const validateAuto = (buch: Document) => {
     const err: ValidationErrorMsg = {};
-    const { titel, art, rating, verlag, isbn, homepage } = buch as Document &
-        BuchData;
+    const { modell, art, rating, hersteller, seriennr, homepage } = buch as Document &
+        AutoData;
 
     const buchDocument = buch;
     if (!buchDocument.isNew && !isUUID(buchDocument._id)) {
         err.id = 'Das Buch hat eine ungueltige ID.';
     }
 
-    if (titel === undefined || titel === null || titel === '') {
-        err.titel = 'Ein Buch muss einen Titel haben.';
-    } else if (!/^\w.*/u.test(titel)) {
-        err.titel =
+    if (modell === undefined || modell === null || modell === '') {
+        err.modell = 'Ein Buch muss einen Titel haben.';
+    } else if (!/^\w.*/u.test(modell)) {
+        err.modell =
             'Ein Buchtitel muss mit einem Buchstaben, einer Ziffer oder _ beginnen.';
     }
     if (art === undefined || art === null || art === '') {
         err.art = 'Die Art eines Buches muss gesetzt sein';
-    } else if (art !== 'KINDLE' && art !== 'DRUCKAUSGABE') {
+    } else if (art !== 'MECHANIK' && art !== 'AUTOMATIK') {
         err.art = 'Die Art eines Buches muss KINDLE oder DRUCKAUSGABE sein.';
     }
     if (
@@ -61,18 +61,18 @@ export const validateBuch = (buch: Document) => {
     ) {
         err.rating = `${rating} ist keine gueltige Bewertung.`;
     }
-    if (verlag === undefined || verlag === null || verlag === '') {
-        err.verlag = 'Der Verlag des Buches muss gesetzt sein.';
-    } else if (verlag !== 'FOO_VERLAG' && verlag !== 'BAR_VERLAG') {
-        err.verlag =
+    if (hersteller === undefined || hersteller === null || hersteller === '') {
+        err.hersteller = 'Der Verlag des Buches muss gesetzt sein.';
+    } else if (hersteller !== 'VW_HERSTELLER' && hersteller !== 'PORSCHE_HERSTELLER') {
+        err.hersteller =
             'Der Verlag eines Buches muss FOO_VERLAG oder BAR_VERLAG sein.';
     }
     if (
-        isbn !== undefined &&
-        isbn !== null &&
-        (typeof isbn !== 'string' || !isISBN(isbn))
+        seriennr !== undefined &&
+        seriennr !== null &&
+        (typeof seriennr !== 'string' || !isISBN(seriennr))
     ) {
-        err.isbn = 'Keine gueltige ISBN-Nummer.';
+        err.seriennr = 'Keine gueltige ISBN-Nummer.';
     }
     // Falls "preis" ein string ist: Pruefung z.B. 12.30
     // if (isPresent(preis) && !isCurrency(`${preis}`)) {

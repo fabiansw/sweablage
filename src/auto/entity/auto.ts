@@ -15,35 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export enum Verlag {
-    FOO_VERLAG = 'FOO_VERLAG',
-    BAR_VERLAG = 'BAR_VERLAG',
+export enum Hersteller {
+    VW_HERSTELLER = 'VW_HERSTELLER',
+    PORSCHE_HERSTELLER = 'PORSCHE_HERSTELLER',
 }
 
-export enum BuchArt {
-    KINDLE = 'KINDLE',
-    DRUCKAUSGABE = 'DRUCKAUSGABE',
+export enum AutoArt {
+    MECHANIK = 'MECHANIK',
+    AUTOMATIK = 'AUTOMATIK',
 }
 
 // gemeinsames Basis-Interface fuer REST und GraphQL
-export interface Buch {
+export interface Auto {
     _id?: string;
     __v?: number;
-    titel: string;
+    modell: string;
     rating?: number;
-    art?: BuchArt | '';
-    verlag: Verlag | '';
+    art?: AutoArt | '';
+    hersteller: Hersteller | '';
     preis: number;
-    rabatt?: number;
+    premium?: number;
     lieferbar?: boolean;
     datum?: string | Date;
-    isbn: string;
+    seriennr: string;
     homepage?: string;
-    schlagwoerter?: Array<string>;
+    assistenzsysteme?: Array<string>;
     autoren: any;
 }
 
-export interface BuchData extends Buch {
+export interface AutoData extends Auto {
     createdAt?: number;
     updatedAt?: number;
     _links?: {

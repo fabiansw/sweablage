@@ -16,9 +16,9 @@
  */
 
 import type { Request, Response } from 'express';
-import { BuchService } from '../service/buch.service';
+import { AutoService } from '../service/autoService';
 
-const buchService = new BuchService();
+const buchService = new AutoService();
 
 export const suche = async (_: Request, res: Response) => {
     const buecher = await buchService.find();

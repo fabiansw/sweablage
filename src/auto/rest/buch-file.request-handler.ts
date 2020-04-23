@@ -16,13 +16,13 @@
  */
 
 import {
-    BuchNotExistsError,
+    AutoNotExistsError,
     FileNotFoundError,
     MultipleFilesError,
 } from './../service/exceptions';
 import { HttpStatus, logger } from '../../shared';
 import type { Request, Response } from 'express';
-import { BuchFileService } from '../service';
+import { AutoFileService } from '../service';
 import JSON5 from 'json5';
 
 // export bei async und await:
@@ -31,7 +31,7 @@ import JSON5 from 'json5';
 // https://nemethgergely.com/async-function-best-practices#Using-async-functions-with-express
 
 export class BuchFileRequestHandler {
-    private readonly service = new BuchFileService();
+    private readonly service = new AutoFileService();
 
     upload(req: Request, res: Response) {
         const { id } = req.params;
@@ -95,7 +95,7 @@ export class BuchFileRequestHandler {
     }
 
     private handleDownloadError(err: Error, res: Response) {
-        if (err instanceof BuchNotExistsError) {
+        if (err instanceof AutoNotExistsError) {
             logger.debug(err.message);
             res.status(HttpStatus.NOT_FOUND).send(err.message);
             return;

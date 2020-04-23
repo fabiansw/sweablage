@@ -17,7 +17,7 @@
 
 /* globals describe, expect, test, beforeAll, afterAll */
 
-import { BuchArt, Verlag } from '../../../src/auto/entity';
+import { AutoArt, Hersteller } from '../../../src/auto/entity';
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
 import type { Server } from 'http';
@@ -37,29 +37,29 @@ const geaendertesBuch: object = {
     // isbn wird nicht geaendet
     titel: 'Geaendert',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
-    verlag: Verlag.FOO_VERLAG,
+    art: AutoArt.AUTOMATIK,
+    verlag: Hersteller.VW_HERSTELLER,
     preis: 33.33,
-    rabatt: 0.033,
+    premium: 0.033,
     lieferbar: true,
     datum: '2016-02-03',
     homepage: 'https://test.te',
-    autoren: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
+    autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
 const geaendertesBuchIdNichtVorhanden: object = {
     titel: 'Nichtvorhanden',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
-    verlag: Verlag.FOO_VERLAG,
+    art: AutoArt.AUTOMATIK,
+    verlag: Hersteller.VW_HERSTELLER,
     preis: 33.33,
-    rabatt: 0.033,
+    premium: 0.033,
     lieferbar: true,
     datum: '2016-02-03',
-    autoren: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
+    autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 
@@ -69,12 +69,12 @@ const geaendertesBuchInvalid: object = {
     art: 'UNSICHTBAR',
     verlag: 'NO_VERLAG',
     preis: 0.01,
-    rabatt: 0,
+    premium: 0,
     lieferbar: true,
     datum: '2016-02-01',
-    isbn: 'falsche-ISBN',
-    autoren: [{ nachname: 'Test', vorname: 'Theo' }],
-    schlagwoerter: [],
+    seriennr: 'falsche-ISBN',
+    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
+    assistenzsysteme: [],
 };
 
 const loginDaten: object = {

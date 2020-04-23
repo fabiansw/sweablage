@@ -29,7 +29,7 @@
 
 import { HttpStatus } from '../../../src/shared';
 import { PATHS } from '../../../src/app';
-import type { BuchData } from '../../../src/auto/entity/types';
+import type { AutoData } from '../../../src/auto/entity/types';
 import type { Server } from 'http';
 import chai from 'chai';
 import { createTestserver } from '../../createTestserver';
@@ -87,7 +87,7 @@ describe('GET /buecher', () => {
         expect(body).not.to.be.empty;
 
         // Jedes Buch hat einen Titel mit dem Teilstring 'a'
-        body.map((buch: BuchData) => buch.titel).forEach((titel: string) =>
+        body.map((buch: AutoData) => buch.modell).forEach((titel: string) =>
             expect(titel).to.have.string(teilTitel),
         );
     });
@@ -126,7 +126,7 @@ describe('GET /buecher', () => {
 
         // Jedes Buch hat im Array der Schlagwoerter "javascript"
         body.map(
-            (buch: BuchData) => buch.schlagwoerter,
+            (buch: AutoData) => buch.assistenzsysteme,
         ).forEach((s: Array<string>) =>
             expect(s).to.include(schlagwort.toUpperCase()),
         );

@@ -36,21 +36,21 @@ export class ValidationError extends Error {
     }
 }
 
-export class TitelExistsError extends Error {
-    readonly name = 'TitelExistsError';
+export class ModellExistsError extends Error {
+    readonly name = 'ModellExistsError';
 
     constructor(public readonly message: string) {
         super();
-        logger.debug(`TitelExistsError.constructor(): ${message}`);
+        logger.debug(`ModellExistsError.constructor(): ${message}`);
     }
 }
 
-export class IsbnExistsError extends Error {
-    readonly name = 'IsbnExistsError';
+export class SeriennrExistsError extends Error {
+    readonly name = 'SeriennrExistsError';
 
     constructor(public readonly message: string) {
         super();
-        logger.debug(`IsbnExistsError.constructor(): ${message}`);
+        logger.debug(`SeriennrExistsError.constructor(): ${message}`);
     }
 }
 
@@ -63,12 +63,12 @@ export class VersionInvalidError extends Error {
     }
 }
 
-export class BuchNotExistsError extends Error {
-    readonly name = 'BuchNotExistsError';
+export class AutoNotExistsError extends Error {
+    readonly name = 'AutoNotExistsError';
 
     constructor(public readonly message: string) {
         super();
-        logger.debug(`BuchNotExistsError.constructor(): ${message}`);
+        logger.debug(`AutoNotExistsError.constructor(): ${message}`);
     }
 }
 

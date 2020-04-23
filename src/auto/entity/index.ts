@@ -15,6 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export { BuchArt, Verlag } from './buch';
-export { buchSchema, BuchModel } from './buch.model';
-export { validateBuch } from './validateBuch';
+export { AutoArt, Hersteller } from './auto';
+export { autoSchema, AutoModel } from './autoModel';
+export { validateAuto } from './validateAuto';

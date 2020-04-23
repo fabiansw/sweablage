@@ -58,7 +58,7 @@ describe('DELETE /buecher', () => {
         await new Promise(resolve => setTimeout(() => resolve(), 1000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
     });
 
-    test('Vorhandenes Buch loeschen', async () => {
+    test('Vorhandenes Auto loeschen', async () => {
         // given: idDeleteVorhanden
         let response = await request(server)
             .post(`${loginPath}`)

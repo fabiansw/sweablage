@@ -29,7 +29,7 @@ export const autos = [
         datum: new Date('2019-02-01'),
         seriennr: '978-3897225831',
         homepage: 'https://acme..at/',
-        assistenzsysteme: ['JAVASCRIPT'],
+        assistenzsysteme: ['TEMPOMAT'],
         autohaeuser: [
             {
                 nachname: 'Alpha',
@@ -56,7 +56,7 @@ export const autos = [
         datum: new Date('2019-02-02'),
         seriennr: '978-3827315526',
         homepage: 'https://acme..biz/',
-        assistenzsysteme: ['TYPESCRIPT'],
+        assistenzsysteme: ['AUTOPILOT'],
         autohaeuser: [
             {
                 nachname: 'Beta',
@@ -79,7 +79,7 @@ export const autos = [
         datum: new Date('2019-02-03'),
         seriennr: '978-0201633610',
         homepage: 'https://acme.com/',
-        assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
+        assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
         autohaeuser: [
             {
                 nachname: 'Gamma',
@@ -125,7 +125,7 @@ export const autos = [
         datum: new Date('2019-02-05'),
         seriennr: '978-3824404810',
         homepage: 'https://acme.es/',
-        assistenzsysteme: ['TYPESCRIPT'],
+        assistenzsysteme: ['AUTOPILOT'],
         autohaeuser: [
             {
                 nachname: 'Epsilon',

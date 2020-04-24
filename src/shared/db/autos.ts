@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export const buecher = [
+export const autos = [
     {
         _id: '00000000-0000-0000-0000-000000000001',
-        titel: 'Alpha',
+        modell: 'Golf',
         rating: 4,
-        art: 'DRUCKAUSGABE',
-        verlag: 'FOO_VERLAG',
+        art: 'AUTOMATIK',
+        hersteller: 'VW_HERSTELLER',
         preis: 11.1,
         premium: 0.011,
         lieferbar: true,
@@ -46,10 +46,10 @@ export const buecher = [
     },
     {
         _id: '00000000-0000-0000-0000-000000000002',
-        titel: 'Beta',
+        modell: 'Carrera GTS',
         rating: 2,
-        art: 'KINDLE',
-        verlag: 'BAR_VERLAG',
+        art: 'MECHANIK',
+        hersteller: 'PORSCHE_HERSTELLER',
         preis: 22.2,
         premium: 0.022,
         lieferbar: true,
@@ -69,10 +69,10 @@ export const buecher = [
     },
     {
         _id: '00000000-0000-0000-0000-000000000003',
-        titel: 'Gamma',
+        modell: 'Polo',
         rating: 1,
-        art: 'DRUCKAUSGABE',
-        verlag: 'FOO_VERLAG',
+        art: 'AUTOMATIK',
+        hersteller: 'VW_HERSTELLER',
         preis: 33.3,
         premium: 0.033,
         lieferbar: true,
@@ -92,10 +92,10 @@ export const buecher = [
     },
     {
         _id: '00000000-0000-0000-0000-000000000004',
-        titel: 'Delta',
+        modell: 'Turbo S',
         rating: 3,
-        art: 'DRUCKAUSGABE',
-        verlag: 'BAR_VERLAG',
+        art: 'AUTOMATIK',
+        hersteller: 'PORSCHE_HERSTELLER',
         preis: 44.4,
         premium: 0.044,
         lieferbar: true,
@@ -115,10 +115,10 @@ export const buecher = [
     },
     {
         _id: '00000000-0000-0000-0000-000000000005',
-        titel: 'Epsilon',
+        modell: 'Touran',
         rating: 2,
-        art: 'KINDLE',
-        verlag: 'FOO_VERLAG',
+        art: 'MECHANIK',
+        hersteller: 'VW_HERSTELLER',
         preis: 55.5,
         premium: 0.055,
         lieferbar: true,

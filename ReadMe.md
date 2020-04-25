@@ -1,7 +1,5 @@
 # Hinweise zum Programmierbeispiel
 
-alel
-
 <Juergen.Zimmermann@HS-Karlsruhe.de>
 
 > Diese Datei ist in Markdown geschrieben und kann mit `<Strg><Shift>v` in

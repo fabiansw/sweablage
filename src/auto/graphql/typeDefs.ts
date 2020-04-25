@@ -23,51 +23,51 @@
  *      String:
  *      Boolean: true, false
  *      ID: eindeutiger Bezeichner, wird serialisiert wie ein String
- *  Buch: eigene Typdefinition für Queries
+ *  Auto: eigene Typdefinition für Queries
  *        "!" markiert Pflichtfelder
  *  Query: Signatur der Lese-Methoden
  *  Mutation: Signatur der Schreib-Methoden
  */
 export const typeDefs = `
     enum Art {
-        DRUCKAUSGABE
-        KINDLE
+        AUTOMATIK
+        MECHANIK
     }
 
-    enum Verlag {
-        FOO_VERLAG
-        BAR_VERLAG
+    enum Hersteller {
+        VW_HERSTELLER
+        PORSCHE_HERSTELLER
     }
 
-    type Buch {
+    type Auto {
         _id: ID!
-        titel: String!
+        modell: String!
         rating: Int
         art: Art
-        verlag: Verlag!
+        hersteller: Hersteller!
         preis: Float
-        rabatt: Float
+        premium: Float
         lieferbar: Boolean
         datum: String
-        isbn: String
+        seriennr: String
         homepage: String
-        schlagwoerter: [String]
+        assistenzsysteme: [String]
         version: Int
     }
 
     type Query {
-        buecher(titel: String): [Buch]
-        buch(id: ID!): Buch
+        autos(modell: String): [Auto]
+        auto(id: ID!): Auto
     }
 
     type Mutation {
-        createBuch(titel: String!, rating: Int, art: String, verlag: String!
-            preis: Float, rabatt: Float, lieferbar: Boolean, datum: String,
-            isbn: String, homepage: String, schlagwoerter: [String]): Buch
-        updateBuch(_id: ID, titel: String!, rating: Int, art: String,
-            verlag: String!, preis: Float, rabatt: Float, lieferbar: Boolean,
-            datum: String, isbn: String, homepage: String,
-            schlagwoerter: [String], version: Int): Buch
-        deleteBuch(id: ID!): Boolean
+        createAuto(modell: String!, rating: Int, art: String, hersteller: String!
+            preis: Float, premium: Float, lieferbar: Boolean, datum: String,
+            seriennr: String, homepage: String, assistenzsysteme: [String]): Auto
+        updateAuto(_id: ID, modell: String!, rating: Int, art: String,
+            hersteller: String!, preis: Float, premium: Float, lieferbar: Boolean,
+            datum: String, seriennr: String, homepage: String,
+            assistenzsysteme: [String], version: Int): Auto
+        deleteAuto(id: ID!): Boolean
     }
 `;

@@ -23,50 +23,50 @@ import type { Auto } from './../entity/types';
 import { AutoService } from '../service/autoService';
 import { logger } from '../../shared';
 
-const buchService = new AutoService();
+const autoService = new AutoService();
 
-const findBuecher = (titel: string) => {
-    const suchkriterium = titel === undefined ? {} : { titel };
-    return buchService.find(suchkriterium);
+const findAutos = (modell: string) => {
+    const suchkriterium = modell === undefined ? {} : { modell: modell };
+    return autoService.find(suchkriterium);
 };
 
-interface TitelCriteria {
-    titel: string;
+interface ModellCriteria {
+    modell: string;
 }
 
 interface IdCriteria {
     id: string;
 }
 
-const createBuch = (buch: Auto) => {
-    buch.datum = new Date(buch.datum as string);
-    return buchService.create(buch);
+const createAuto = (auto: Auto) => {
+    auto.datum = new Date(auto.datum as string);
+    return autoService.create(auto);
 };
 
-const updateBuch = async (buch: Auto) => {
-    const version = buch.__v ?? 0;
-    buch.datum = new Date(buch.datum as string);
-    const buchUpdated = await buchService.update(buch, version.toString());
-    logger.debug(`resolvers updateBuch(): Versionsnummer: ${buch.__v}`);
-    return buchUpdated;
+const updateAuto = async (auto: Auto) => {
+    const version = auto.__v ?? 0;
+    auto.datum = new Date(auto.datum as string);
+    const autoUpdated = await autoService.update(auto, version.toString());
+    logger.debug(`resolvers updateAuto(): Versionsnummer: ${auto.__v}`);
+    return autoUpdated;
 };
 
-const deleteBuch = async (id: string) => {
-    await buchService.delete(id);
+const deleteAuto = async (id: string) => {
+    await autoService.delete(id);
 };
 
 // Queries passend zu "type Query" in typeDefs.ts
 const query: IResolverObject = {
-    // Buecher suchen, ggf. mit Titel als Suchkriterium
-    buecher: (_: unknown, { titel }: TitelCriteria) => findBuecher(titel),
-    // Ein Buch mit einer bestimmten ID suchen
-    buch: (_: unknown, { id }: IdCriteria) => buchService.findById(id),
+    // Autos suchen, ggf. mit Modell als Suchkriterium
+    buecher: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
+    // Ein Auto mit einer bestimmten ID suchen
+    buch: (_: unknown, { id }: IdCriteria) => autoService.findById(id),
 };
 
 const mutation: IResolverObject = {
-    createBuch: (_: unknown, buch: Auto) => createBuch(buch),
-    updateBuch: (_: unknown, buch: Auto) => updateBuch(buch),
-    deleteBuch: (_: unknown, { id }: IdCriteria) => deleteBuch(id),
+    createBuch: (_: unknown, auto: Auto) => createAuto(auto),
+    updateBuch: (_: unknown, auto: Auto) => updateAuto(auto),
+    deleteBuch: (_: unknown, { id }: IdCriteria) => deleteAuto(id),
 };
 
 export const resolvers: IResolvers = {

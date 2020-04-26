@@ -33,26 +33,26 @@ export interface ValidationErrorMsg {
 }
 
 /* eslint-disable no-null/no-null */
-export const validateAuto = (buch: Document) => {
+export const validateAuto = (auto: Document) => {
     const err: ValidationErrorMsg = {};
-    const { modell, art, rating, hersteller, seriennr, homepage } = buch as Document &
+    const { modell, art, rating, hersteller, seriennr, homepage } = auto as Document &
         AutoData;
 
-    const buchDocument = buch;
-    if (!buchDocument.isNew && !isUUID(buchDocument._id)) {
-        err.id = 'Das Buch hat eine ungueltige ID.';
+    const autoDocument = auto;
+    if (!autoDocument.isNew && !isUUID(autoDocument._id)) {
+        err.id = 'Das Auto hat eine ungueltige ID.';
     }
 
     if (modell === undefined || modell === null || modell === '') {
-        err.modell = 'Ein Buch muss einen Titel haben.';
+        err.modell = 'Ein Auto muss ein Modell haben.';
     } else if (!/^\w.*/u.test(modell)) {
         err.modell =
-            'Ein Buchtitel muss mit einem Buchstaben, einer Ziffer oder _ beginnen.';
+            'Ein Automodell muss mit einem Buchstaben, einer Ziffer oder _ beginnen.';
     }
     if (art === undefined || art === null || art === '') {
-        err.art = 'Die Art eines Buches muss gesetzt sein';
+        err.art = 'Die Art eines Autos muss gesetzt sein';
     } else if (art !== 'MECHANIK' && art !== 'AUTOMATIK') {
-        err.art = 'Die Art eines Buches muss KINDLE oder DRUCKAUSGABE sein.';
+        err.art = 'Die Art eines Autos muss MECHANIK oder AUTOMATIK sein.';
     }
     if (
         rating !== undefined &&
@@ -62,17 +62,17 @@ export const validateAuto = (buch: Document) => {
         err.rating = `${rating} ist keine gueltige Bewertung.`;
     }
     if (hersteller === undefined || hersteller === null || hersteller === '') {
-        err.hersteller = 'Der Verlag des Buches muss gesetzt sein.';
+        err.hersteller = 'Der Hersteller des Autos muss gesetzt sein.';
     } else if (hersteller !== 'VW_HERSTELLER' && hersteller !== 'PORSCHE_HERSTELLER') {
         err.hersteller =
-            'Der Verlag eines Buches muss FOO_VERLAG oder BAR_VERLAG sein.';
+            'Der Hersteller eines Autos muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.';
     }
     if (
         seriennr !== undefined &&
         seriennr !== null &&
         (typeof seriennr !== 'string' || !isISBN(seriennr))
     ) {
-        err.seriennr = 'Keine gueltige ISBN-Nummer.';
+        err.seriennr = 'Keine gueltige Seriennummer.';
     }
     // Falls "preis" ein string ist: Pruefung z.B. 12.30
     // if (isPresent(preis) && !isCurrency(`${preis}`)) {

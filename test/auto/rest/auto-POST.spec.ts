@@ -35,7 +35,7 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const neuesAuto: Auto = {
-    modell: 'Neu',
+    modell: 'Golf',
     rating: 1,
     art: AutoArt.AUTOMATIK,
     hersteller: Hersteller.VW_HERSTELLER,
@@ -45,24 +45,25 @@ const neuesAuto: Auto = {
     datum: '2016-02-28',
     seriennr: '0-0070-0644-6',
     homepage: 'https://test.de/',
-    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
-    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
+    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
+    autohaeuser: [{ nachname: 'Test', vorname: 'Haus' }],
 };
 const neuesAutoInvalid: object = {
-    titel: 'Blabla',
+    modell: 'Blabla',
     rating: -1,
-    art: 'UNSICHTBAR',
-    verlag: 'NO_VERLAG',
+    art: 'Falsche_Art',
+    hersteller: 'Falscher_Hersteller',
     preis: 0,
     premium: 0,
     lieferbar: true,
     datum: '2016-02-01',
     seriennr: 'falsche-Seriennummer',
-    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
+    homepage: 'keine Homepage',
     assistenzsysteme: [],
+    autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
 };
 const neuesAutoTitelExistiert: Auto = {
-    modell: 'Alpha',
+    modell: 'Golf',
     rating: 1,
     art: AutoArt.AUTOMATIK,
     hersteller: Hersteller.VW_HERSTELLER,
@@ -71,8 +72,10 @@ const neuesAutoTitelExistiert: Auto = {
     lieferbar: true,
     datum: '2016-02-28',
     seriennr: '0-0070-9732-8',
+    homepage: 'https://test.de/',
+    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'], 
     autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
-    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
+    
 };
 
 const loginDaten: object = {
@@ -159,10 +162,10 @@ describe('POST /autos', () => {
             'Die Art eines Autos muss Mechanik oder Automatik sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
-        expect(verlag).to.be.equal(
+        expect(hersteller).to.be.equal(
             'Der Hersteller eines Autos muss FOO_VERLAG oder BAR_VERLAG sein.',
         );
-        expect(isbn).to.endWith('eine gueltige Seriennummer.');
+        expect(seriennr).to.endWith('eine gueltige Seriennummer.');
     });
 
     test('Neues Auto, aber das Modell existiert bereits', async () => {

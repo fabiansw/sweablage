@@ -59,7 +59,9 @@ describe('GET /autos', () => {
 
     test('Alle Autos', async () => {
         // when
-        const response = await request(server).get(path).trustLocalhost();
+        const response = await request(server)
+            .get(path)
+            .trustLocalhost();
 
         // then
         const { status, header, body } = response;
@@ -72,11 +74,11 @@ describe('GET /autos', () => {
 
     test('Autos mit einem Titel, der ein "a" enthaelt', async () => {
         // given
-        const teilTitel = 'a';
+        const teilName = 'a';
 
         // when
         const response = await request(server)
-            .get(`${path}?titel=${teilTitel}`)
+            .get(`${path}?modell=${teilName}`)
             .trustLocalhost();
 
         // then
@@ -87,18 +89,18 @@ describe('GET /autos', () => {
         expect(body).not.to.be.empty;
 
         // Jedes Auto hat einen Titel mit dem Teilstring 'a'
-        body.map((auto: AutoData) => auto.modell).forEach((titel: string) =>
-            expect(titel).to.have.string(teilTitel),
+        body.map((auto: AutoData) => auto.modell).forEach((modell: string) =>
+            expect(modell).to.have.string(teilName),
         );
     });
 
     test('Keine Autos mit einem Titel, der "XX" enthaelt', async () => {
         // given
-        const teilTitel = 'XX';
+        const teilName = 'XX';
 
         // when
         const response = await request(server)
-            .get(`${path}?titel=${teilTitel}`)
+            .get(`${path}?modell=${teilName}`)
             .trustLocalhost();
 
         // then
@@ -108,13 +110,13 @@ describe('GET /autos', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test('Mind. 1 Auto mit dem Schlagwort "javascript"', async () => {
+    test('Mind. 1 Auto mit dem Assistenzsystem "Tempomat"', async () => {
         // given
-        const schlagwort = 'javascript';
+        const assistenzsystem = 'tempomat';
 
         // when
         const response = await request(server)
-            .get(`${path}?${schlagwort}=true`)
+            .get(`${path}?${assistenzsystem}=true`)
             .trustLocalhost();
 
         // then
@@ -124,21 +126,21 @@ describe('GET /autos', () => {
         // JSON-Array mit mind. 1 JSON-Objekt
         expect(body).not.to.be.empty;
 
-        // Jedes Auto hat im Array der Schlagwoerter "javascript"
+        // Jedes Auto hat im Array der Assistenzsysteme "javascript"
         body.map(
             (auto: AutoData) => auto.assistenzsysteme,
         ).forEach((s: Array<string>) =>
-            expect(s).to.include(schlagwort.toUpperCase()),
+            expect(s).to.include(assistenzsystem.toUpperCase()),
         );
     });
 
-    test('Keine Autos mit dem Schlagwort "csharp"', async () => {
+    test('Keine Autos mit dem Schlagwort "Selbstfahrend"', async () => {
         // given
-        const schlagwort = 'csharp';
+        const assistenzsystem = 'Selbstfahrend';
 
         // when
         const response = await request(server)
-            .get(`${path}?${schlagwort}=true`)
+            .get(`${path}?${assistenzsystem}=true`)
             .trustLocalhost();
 
         // then

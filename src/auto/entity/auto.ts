@@ -40,7 +40,7 @@ export interface Auto {
     seriennr: string;
     homepage?: string;
     assistenzsysteme?: Array<string>;
-    autoren: any;
+    autohaeuser: any;
 }
 
 export interface AutoData extends Auto {

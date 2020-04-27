@@ -38,14 +38,14 @@ class App <<boudary>> {
 App ..> Express
 App ..> express
 
-package buch {
+package auto {
   package entity {
-    interface BuchData <<entity>> {
+    interface AutoData <<entity>> {
     }
   }
 
   package service {
-    class BuchService << control >> {
+    class AutoService << control >> {
     }
   }
 
@@ -53,13 +53,13 @@ package buch {
     "Handler Functions" .right.> Request
     "Handler Functions" ..> Response
     "Handler Functions" ..> Promise
-    "Handler Functions" ..> BuchHandler
+    "Handler Functions" ..> AutoHandler
 
-    BuchHandler o--> "1" BuchService : service
-    BuchHandler .right.> Request
-    BuchHandler ..> Response
-    BuchHandler ..> BuchData
-    BuchHandler ..> Promise
+    AutoHandler o--> "1" AutoService : service
+    AutoHandler .right.> Request
+    AutoHandler ..> Response
+    AutoHandler ..> AutoData
+    AutoHandler ..> Promise
 
     class "Handler Functions" << boundary >> {
       + async findById(req: Request, res: Response): Promise<void>
@@ -70,7 +70,7 @@ package buch {
     }
     hide "Handler Functions" << boundary >> circle
 
-    class BuchHandler << control >> {
+    class AutoHandler << control >> {
       + async findById(req: Request, res: Response): Promise<void>
       + async find(req: Request, res: Response): Promise<void>
       + async create(req: Request, res: Response): Promise<void>

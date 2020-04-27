@@ -18,9 +18,9 @@
 import type { Request, Response } from 'express';
 import { AutoService } from '../service/autoService';
 
-const buchService = new AutoService();
+const autoService = new AutoService();
 
 export const suche = async (_: Request, res: Response) => {
-    const buecher = await buchService.find();
-    res.render('suche', { title: 'Suche', buecher: autos });
+    const autos = await autoService.find();
+    res.render('suche', { title: 'Suche', autos: autos });
 };

@@ -25,47 +25,47 @@ package mongoose {
   hide model circle
 }
 
-package buch.entity {
-  class "validateBuch()" as validateBuch
-  hide validateBuch circle
+package auto.entity {
+  class "validateAuto()" as validateAuto
+  hide validateAuto circle
 
-  class BuchModel
-  hide BuchModel circle
+  class AutoModel
+  hide AutoModel circle
 
-  BuchModel ..> Schema
-  BuchModel ..> model
-  BuchModel ..> validateBuch
+  AutoModel ..> Schema
+  AutoModel ..> model
+  AutoModel ..> validateAuto
 
-  BuchData ..> BuchArt
-  BuchData ..> Verlag
+  AutoData ..> AutoArt
+  AutoData ..> Hersteller
 
-  enum BuchArt {
-    KINDLE
-    DRUCKAUSGABE
+  enum AutoArt {
+    MECHANIK
+    AUTOMATIK
   }
 
-  enum Verlag {
-    FOO_VERLAG
-    BAR_VERLAG
+  enum Hersteller {
+    VW_HERSTELLER
+    PORSCHE_HERSTELLER
   }
 
-  interface BuchData <<entity>> {
+  interface AutoData <<entity>> {
     + _id?: string
     + __v?: number
     + createdAt?: number
     + updatedAt?: number
-    + titel: string
+    + modell: string
     + rating?: number
-    + art?: BuchArt
-    + verlag: Verlag
+    + art?: AutoArt
+    + hersteller: Hersteller
     + preis: number
     + rabatt?: number
     + lieferbar?: boolean
     + datum?: Date
-    + isbn: string
+    + seriennr: string
     + homepage?: string
-    + schlagwoerter?: Array<string>
-    + autoren: any
+    + assistenzsysteme?: Array<string>
+    + autohaeuser: any
   }
 }
 

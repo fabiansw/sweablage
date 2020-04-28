@@ -44,7 +44,7 @@ Authorization: Bearer {{login.response.body.$.token}}
 
 < .\files\image.bmp
 
-### MP4-Video zu einem vorhandenen Buch hochladen
+### MP4-Video zu einem vorhandenen Auto hochladen
 PUT https://{{host}}/autos/00000000-0000-0000-0000-000000000003/file
 Content-Type: video/mp4
 Authorization: Bearer {{login.response.body.$.token}}

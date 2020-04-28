@@ -71,7 +71,7 @@ export const populateDB = async (dev?: boolean) => {
     const { db, client } = await connectMongoDB();
 
     // http://mongodb.github.io/node-mongodb-native/3.5/api/Db.html#dropCollection
-    const collectionName = 'Buch';
+    const collectionName = 'Auto';
     let dropped = false;
     try {
         dropped = await db.dropCollection(collectionName);

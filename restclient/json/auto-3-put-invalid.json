@@ -1,14 +1,14 @@
 {
   "_id": "00000000-0000-0000-0000-000000000003",
-  "titel": "?!",
+  "modell": "?!",
   "rating": 5,
-  "art": "KINDLE",
-  "verlag": "IWI_VERLAG",
+  "art": "MECHANIK",
+  "hersteller": "PORSCHE_HERSTELLER",
   "preis": 9999,
-  "rabatt": 99,
+  "premium": 99,
   "lieferbar": true,
   "datum": "2017-02-01T00:00:00.000Z",
-  "isbn": "falsche-isbn",
+  "seriennr": "falsche-seriennr",
   "homepage": "anyHomepage",
-  "schlagwoerter": ["JAVASCRIPT"]
+  "assistenzsysteme": ["AUTOPILOT"]
 }

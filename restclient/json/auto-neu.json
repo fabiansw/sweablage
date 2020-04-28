@@ -1,0 +1,19 @@
+{
+  "modell": "Neuwagen",
+  "rating": 1,
+  "art": "MECHANIK",
+  "hersteller": "VW_HERSTELLER",
+  "preis": 99.9,
+  "premium": 1,
+  "lieferbar": true,
+  "datum": "2017-02-01T00:00:00.000Z",
+  "seriennr": "0-0070-0644-6",
+  "homepage": "https://test.de/",
+  "assistenzsysteme": ["AUTOPILOT", "TEMPOMAT"],
+  "autohaeuser": [
+    {
+      "Name": "Theos Autohaus",
+      "Marke": "VW"
+    }
+  ]
+}

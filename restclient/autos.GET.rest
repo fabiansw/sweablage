@@ -1,0 +1,52 @@
+###
+### N e t z w e r k   -  V e r b i n d u n g   n o t w e n d i g
+###
+
+@host = localhost:8443
+
+### Suche alle Autos
+https://{{host}}/autos
+
+### Suche mit vorhandener Auto-ID
+https://{{host}}/autos/00000000-0000-0000-0000-000000000001
+
+### Suche mit vorhandener Auto-ID und Versionsnummer
+https://{{host}}/autos/00000000-0000-0000-0000-000000000001
+If-None-Match: "0"
+
+### Suche mit vorhandener Auto-ID und falscher Versionsnummer
+https://{{host}}/autos/00000000-0000-0000-0000-000000000001
+If-None-Match: 0
+
+### Suche mit ungueltiger Auto-ID
+https://{{host}}/autos/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+
+### Suche mit nicht-vorhandener Auto-ID
+https://{{host}}/autos/99999999-9999-9999-9999-999999999999
+
+### Suche mit vorhandenem Modell
+https://{{host}}/autos?modell=a
+
+### Suche mit vorhandener Seriennummer
+https://{{host}}/autos?seriennr=978-3897225831
+
+### Suche mit vorhandenen Assistenzsystemen
+https://{{host}}/autos?autopilot=true&tempomat=true
+
+### Suche mit vorhandenem Assistenzsystemen "AUTOPILOT"
+https://{{host}}/autos?javascript=true
+
+### Suche mit vorhandenem Assistenzsystemen "TEMPOMAT"
+https://{{host}}/autos?&typescript=true
+
+### Suche mit gueltiger Art
+https://{{host}}/autos?art=MECHANIK
+
+### Suche mit gueltigem Rating
+https://{{host}}/autos?rating=1
+
+### Suche lieferbare Autos
+https://{{host}}/autos?lieferbar=true
+
+### Optionen zu Auto-ID
+OPTIONS https://{{host}}/autos/00000000-0000-0000-0000-000000000001

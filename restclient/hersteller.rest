@@ -4,5 +4,5 @@
 
 @host = localhost:8443
 
-### Suche alle Verlage
-https://{{host}}/verlage
+### Suche alle Hersteller
+https://{{host}}/hersteller

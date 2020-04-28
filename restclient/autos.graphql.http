@@ -4,101 +4,101 @@
 
 @host = localhost:8443
 
-### Suche titel und art von allen Buechern
+### Suche Modell und Art von allen Autos
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher {
-    titel
+  autos {
+    modell
     art
   }
 }
 
-### Suche titel, art und isbn von einem Buch mit vorhandener Buch-ID
+### Suche modell, art und seriennr von einem Auto mit vorhandener Auto-ID
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buch(id: "00000000-0000-0000-0000-000000000001") {
-    titel
+  auto(id: "00000000-0000-0000-0000-000000000001") {
+    modell
     art
-    isbn
+    seriennr
   }
 }
 
-### Suche titel und art von Buechern mit vorhandenem Titel
+### Suche modell und art von Autos mit vorhandenem Modell
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher(titel: "Alpha") {
-    titel
+  autos(modell: "Alpha") {
+    modell
     art
   }
 }
 
 
-### Suche titel, art und schlagwoerter von Buechern mit vorhandenem Titel
+### Suche modell, art und assistenzsysteme von Autos mit vorhandenem Modell
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher(titel: "a") {
-    titel
+  autos(modell: "a") {
+    modell
     art
-    schlagwoerter
+    assistenzsysteme
   }
 }
 
-### Neues Buch anlegen
+### Neues Auto anlegen
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 mutation {
-  createBuch(
-    titel: "Test"
+  createAuto(
+    modell: "Test"
     rating: 1
-    art: "KINDLE"
-    verlag: "IWI_VERLAG"
-    preis: 11.1
-    rabatt: 0.011
+    art: "AUTOMATIK"
+    hersteller: "VW_HERSTELLER"
+    preis: 11000.1
+    premium: 0.011
     lieferbar: true
     datum: null
-    isbn: "3-89722-583-2"
+    seriennr: "3-89722-583-2"
     homepage: "http://test.de"
-    schlagwoerter: ["JAVASCRIPT"]
+    assistenzsysteme: ["TEMPOMAT"]
   ) {
     _id
   }
 }
 
-### Vorhandenes Buch aktualisieren
+### Vorhandenes Auto aktualisieren
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 mutation {
-  updateBuch(
+  updateAuto(
     _id: "00000000-0000-0000-0000-000000000003",
-    titel: "Geaendert",
+    modell: "Geaendert",
     rating: 5,
-    art: "DRUCKAUSGABE",
-    verlag: "FOO_VERLAG",
-    preis: 99.99,
-    rabatt: 0.099,
+    art: "AUTOMATIK",
+    hersteller: "PORSCHE_HERSTELLER",
+    preis: 99000.99,
+    premium: 0.099,
     lieferbar: false,
     datum: "2018-01-31",
-    isbn: "3-8273-1552-2",
+    seriennr: "3-8273-1552-2",
     homepage: "https://test.te",
-    schlagwoerter: [
-      "JAVASCRIPT",
-      "TYPESCRIPT"
+    assistenzsysteme: [
+      "AUTOPILOT",
+      "TEMPOMAT"
     ],
     version: 0
   ) {
@@ -106,11 +106,11 @@ mutation {
   }
 }
 
-### Vorhandenes Buch loeschen
+### Vorhandenes Auto loeschen
 POST https://localhost:8443/api
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 mutation {
-  deleteBuch(id: "00000000-0000-0000-0000-000000000004")
+  deleteAuto(id: "00000000-0000-0000-0000-000000000004")
 }

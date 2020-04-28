@@ -62,7 +62,7 @@ const neuesAutoInvalid: object = {
     assistenzsysteme: [],
     autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
 };
-const neuesAutoTitelExistiert: Auto = {
+const neuesAutoModellExistiert: Auto = {
     modell: 'Golf',
     rating: 1,
     art: AutoArt.AUTOMATIK,
@@ -163,7 +163,7 @@ describe('POST /autos', () => {
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(hersteller).to.be.equal(
-            'Der Hersteller eines Autos muss FOO_VERLAG oder BAR_VERLAG sein.',
+            'Der Hersteller eines Autos muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.',
         );
         expect(seriennr).to.endWith('eine gueltige Seriennummer.');
     });
@@ -181,7 +181,7 @@ describe('POST /autos', () => {
         response = await request(server)
             .post(path)
             .set('Authorization', `Bearer ${token}`)
-            .send(neuesAutoTitelExistiert)
+            .send(neuesAutoModellExistiert)
             .trustLocalhost();
 
         // then

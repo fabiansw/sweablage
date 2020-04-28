@@ -20,7 +20,7 @@ import type { Document } from 'mongoose';
 import { MAX_RATING } from '../../shared';
 import validator from 'validator';
 
-const { isUUID, isURL, isISBN } = validator;
+const { isUUID, isURL, isSERIENNR } = validator;
 
 export interface ValidationErrorMsg {
     id?: string;
@@ -70,7 +70,7 @@ export const validateAuto = (auto: Document) => {
     if (
         seriennr !== undefined &&
         seriennr !== null &&
-        (typeof seriennr !== 'string' || !isISBN(seriennr))
+        (typeof seriennr !== 'string' || !isSERIENNR(seriennr))
     ) {
         err.seriennr = 'Keine gueltige Seriennummer.';
     }

@@ -35,7 +35,7 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const neuesAuto: Auto = {
-    modell: 'Golf',
+    modell: 'Test',
     rating: 1,
     art: AutoArt.AUTOMATIK,
     hersteller: Hersteller.VW_HERSTELLER,

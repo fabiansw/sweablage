@@ -20,8 +20,8 @@ import type { Auto, AutoData } from '../entity/types';
 import { AutoModel, validateAuto } from '../entity';
 import {
     AutoNotExistsError,
-    SeriennrExistsError,
     ModellExistsError,
+    SeriennrExistsError,
     ValidationError,
     VersionInvalidError,
 } from './exceptions';
@@ -90,7 +90,7 @@ export class AutoService {
             return tmpQuery.sort('modell').lean<AutoData>();
         }
 
-        const { modell, javascript, typescript, ...dbQuery } = query;
+        const { modell, tempomat, autopilot, ...dbQuery } = query;
 
         // Autos zur Query (= JSON-Objekt durch Express) asynchron suchen
         if (modell !== undefined) {
@@ -105,13 +105,13 @@ export class AutoService {
             }
         }
 
-        // z.B. {javascript: true, typescript: true}
+        // z.B. {tempomat: true, autopilot: true}
         const assistenzsysteme = [];
-        if (javascript === 'true') {
-            assistenzsysteme.push('JAVASCRIPT');
+        if (tempomat === 'true') {
+            assistenzsysteme.push('TEMPOMAT');
         }
-        if (typescript === 'true') {
-            assistenzsysteme.push('TYPESCRIPT');
+        if (autopilot === 'true') {
+            assistenzsysteme.push('AUTOPILOT');
         }
         if (assistenzsysteme.length === 0) {
             delete dbQuery.assistenzsysteme;
@@ -158,12 +158,14 @@ export class AutoService {
             // Promise<void> als Rueckgabewert
             // Eine von Error abgeleitete Klasse hat die Property "message"
             return Promise.reject(
-                new ModellExistsError(`Das Modell "${modell}" existiert bereits.`),
+                new ModellExistsError(
+                    `Das Modell "${modell}" existiert bereits.`,
+                ),
             );
         }
 
         const { seriennr } = autoData;
-        tmp = await AutoModel.findOne({ seriennr: seriennr }).lean<AutoData>();
+        tmp = await AutoModel.findOne({ seriennr }).lean<AutoData>();
         if (tmp !== null) {
             return Promise.reject(
                 new SeriennrExistsError(

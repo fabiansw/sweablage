@@ -50,7 +50,12 @@ export const autoSchema = new Schema(
         premium: Number,
         lieferbar: Boolean,
         datum: Date,
-        seriennr: { type: String, required: true, unique: true, immutable: true },
+        seriennr: {
+            type: String,
+            required: true,
+            unique: true,
+            immutable: true,
+        },
         homepage: String,
         assistenzsysteme: { type: [String], sparse: true },
         // "anything goes"

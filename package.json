@@ -1,7 +1,7 @@
 {
-  "name": "beispiel",
+  "name": "auto",
   "version": "1.0.0",
-  "description": "Beispiel",
+  "description": "Auto",
   "main": "dist/index.js",
   "engines": {
     "node": ">=13.11.0",

@@ -135,7 +135,7 @@ export class AutoRequestHandler {
         }
 
         logger.debug(
-            `AutoRequestHandler.find(): buecher=${JSON5.stringify(autos)}`,
+            `AutoRequestHandler.find(): autos=${JSON5.stringify(autos)}`,
         );
         res.json(autos);
     }

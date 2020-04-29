@@ -174,7 +174,7 @@ describe('PUT /autos/:id', () => {
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(hersteller).to.be.equal(
-            'Der Hersteller eines Autoes muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.',
+            'Der Hersteller eines Autos muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.',
         );
         expect(seriennr).to.endWith('eine gueltige Seriennummer.');
     });

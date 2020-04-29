@@ -59,7 +59,7 @@ package auto.entity {
     + art?: AutoArt
     + hersteller: Hersteller
     + preis: number
-    + rabatt?: number
+    + premium?: number
     + lieferbar?: boolean
     + datum?: Date
     + seriennr: string

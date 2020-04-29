@@ -114,7 +114,7 @@ export class AutoService {
             assistenzsysteme.push('TYPESCRIPT');
         }
         if (assistenzsysteme.length === 0) {
-            delete dbQuery.schlagwoerter;
+            delete dbQuery.assistenzsysteme;
         } else {
             dbQuery.assistenzsysteme = assistenzsysteme;
         }

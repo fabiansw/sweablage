@@ -34,11 +34,11 @@ import('chai-string').then(chaiString => chai.use(chaiString.default));
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const geaendertesAuto: object = {
-    // isbn wird nicht geaendet
-    titel: 'Geaendert',
+    // seriennr wird nicht geaendet
+    modell: 'Geaendert',
     rating: 1,
     art: AutoArt.AUTOMATIK,
-    verlag: Hersteller.VW_HERSTELLER,
+    hersteller: Hersteller.VW_HERSTELLER,
     preis: 33.33,
     premium: 0.033,
     lieferbar: true,
@@ -50,10 +50,10 @@ const geaendertesAuto: object = {
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
 const geaendertesAutoIdNichtVorhanden: object = {
-    titel: 'Nichtvorhanden',
+    modell: 'Nichtvorhanden',
     rating: 1,
     art: AutoArt.AUTOMATIK,
-    verlag: Hersteller.VW_HERSTELLER,
+    hersteller: Hersteller.VW_HERSTELLER,
     preis: 33.33,
     premium: 0.033,
     lieferbar: true,
@@ -64,15 +64,15 @@ const geaendertesAutoIdNichtVorhanden: object = {
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 
 const geaendertesAutoInvalid: object = {
-    titel: 'Alpha',
+    modell: 'Alpha',
     rating: -1,
     art: 'UNSICHTBAR',
-    verlag: 'NO_VERLAG',
+    hersteller: 'NO_HERSTELLER',
     preis: 0.01,
     premium: 0,
     lieferbar: true,
     datum: '2016-02-01',
-    seriennr: 'falsche-ISBN',
+    seriennr: 'falsche-SERIENNR',
     autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
     assistenzsysteme: [],
 };
@@ -167,16 +167,16 @@ describe('PUT /autos/:id', () => {
         // then
         const { status, body } = response;
         expect(status).to.be.equal(HttpStatus.BAD_REQUEST);
-        const { art, rating, verlag, isbn } = body;
+        const { art, rating, hersteller, seriennr } = body;
 
         expect(art).to.be.equal(
             'Die Art eines Autoes muss Mechanik oder Autokatik sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
-        expect(verlag).to.be.equal(
-            'Der Hersteller eines Autoes muss FOO_VERLAG oder BAR_VERLAG sein.',
+        expect(hersteller).to.be.equal(
+            'Der Hersteller eines Autoes muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.',
         );
-        expect(isbn).to.endWith('eine gueltige Seriennummer.');
+        expect(seriennr).to.endWith('eine gueltige Seriennummer.');
     });
 
     test('Vorhandenes Auto aendern, aber ohne Versionsnummer', async () => {

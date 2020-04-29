@@ -72,7 +72,7 @@ describe('GET /autos', () => {
         expect(body).not.to.be.empty;
     });
 
-    test('Autos mit einem Titel, der ein "a" enthaelt', async () => {
+    test('Autos mit einem Modell, der ein "a" enthaelt', async () => {
         // given
         const teilName = 'a';
 
@@ -88,13 +88,13 @@ describe('GET /autos', () => {
         // response.body ist ein JSON-Array mit mind. 1 JSON-Objekt
         expect(body).not.to.be.empty;
 
-        // Jedes Auto hat einen Titel mit dem Teilstring 'a'
+        // Jedes Auto hat einen Modell mit dem Teilstring 'a'
         body.map((auto: AutoData) => auto.modell).forEach((modell: string) =>
             expect(modell).to.have.string(teilName),
         );
     });
 
-    test('Keine Autos mit einem Titel, der "XX" enthaelt', async () => {
+    test('Keine Autos mit einem Modell, der "XX" enthaelt', async () => {
         // given
         const teilName = 'XX';
 

@@ -60,13 +60,13 @@ const query: IResolverObject = {
     // Autos suchen, ggf. mit Modell als Suchkriterium
     buecher: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
     // Ein Auto mit einer bestimmten ID suchen
-    buch: (_: unknown, { id }: IdCriteria) => autoService.findById(id),
+    auto: (_: unknown, { id }: IdCriteria) => autoService.findById(id),
 };
 
 const mutation: IResolverObject = {
-    createBuch: (_: unknown, auto: Auto) => createAuto(auto),
-    updateBuch: (_: unknown, auto: Auto) => updateAuto(auto),
-    deleteBuch: (_: unknown, { id }: IdCriteria) => deleteAuto(id),
+    createAuto: (_: unknown, auto: Auto) => createAuto(auto),
+    updateAuto: (_: unknown, auto: Auto) => updateAuto(auto),
+    deleteAuto: (_: unknown, { id }: IdCriteria) => deleteAuto(id),
 };
 
 export const resolvers: IResolvers = {

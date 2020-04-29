@@ -45,7 +45,7 @@ const geaendertesAuto: object = {
     datum: '2016-02-03',
     homepage: 'https://test.te',
     autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
@@ -59,7 +59,7 @@ const geaendertesAutoIdNichtVorhanden: object = {
     lieferbar: true,
     datum: '2016-02-03',
     autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
+    assistenzsysteme: ['JAVASCRIPT', 'TYPESCRIPT'],
 };
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 

@@ -58,7 +58,7 @@ const deleteAuto = async (id: string) => {
 // Queries passend zu "type Query" in typeDefs.ts
 const query: IResolverObject = {
     // Autos suchen, ggf. mit Modell als Suchkriterium
-    autos: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
+    buecher: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
     // Ein Auto mit einer bestimmten ID suchen
     auto: (_: unknown, { id }: IdCriteria) => autoService.findById(id),
 };

@@ -20,8 +20,8 @@
 import {
     AutoNotExistsError,
     AutoService,
-    SeriennrExistsError,
     ModellExistsError,
+    SeriennrExistsError,
     ValidationError,
     VersionInvalidError,
 } from '../service';
@@ -135,7 +135,7 @@ export class AutoRequestHandler {
         }
 
         logger.debug(
-            `AutoRequestHandler.find(): buecher=${JSON5.stringify(autos)}`,
+            `AutoRequestHandler.find(): autos=${JSON5.stringify(autos)}`,
         );
         res.json(autos);
     }
@@ -239,7 +239,10 @@ export class AutoRequestHandler {
             return;
         }
 
-        if (err instanceof ModellExistsError || err instanceof SeriennrExistsError) {
+        if (
+            err instanceof ModellExistsError ||
+            err instanceof SeriennrExistsError
+        ) {
             const { name, message } = err;
             logger.debug(
                 `AutoRequestHandler.handleCreateError(): err.name=${name}, message=${message}`,

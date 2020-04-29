@@ -63,7 +63,7 @@ const neuesAutoInvalid: object = {
     autohaeuser: [{ nachname: 'Test', vorname: 'Theo' }],
 };
 const neuesAutoModellExistiert: Auto = {
-    modell: 'Golf',
+    modell: 'Test',
     rating: 1,
     art: AutoArt.AUTOMATIK,
     hersteller: Hersteller.VW_HERSTELLER,

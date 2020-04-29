@@ -45,7 +45,7 @@ const geaendertesAuto: object = {
     datum: '2016-02-03',
     homepage: 'https://test.te',
     autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    assistenzsysteme: ['TEMPOMAT', 'TYPESCRIPT'],
+    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
 };
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
@@ -59,7 +59,7 @@ const geaendertesAutoIdNichtVorhanden: object = {
     lieferbar: true,
     datum: '2016-02-03',
     autohaeuser: [{ nachname: 'Gamma', vorname: 'Claus' }],
-    assistenzsysteme: ['TEMPOMAT', 'TYPESCRIPT'],
+    assistenzsysteme: ['TEMPOMAT', 'AUTOPILOT'],
 };
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 
@@ -170,7 +170,7 @@ describe('PUT /autos/:id', () => {
         const { art, rating, hersteller, seriennr } = body;
 
         expect(art).to.be.equal(
-            'Die Art eines Autoes muss Mechanik oder Autokatik sein.',
+            'Die Art eines Autoes muss MECHANIK oder AUTOMATIK sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(hersteller).to.be.equal(

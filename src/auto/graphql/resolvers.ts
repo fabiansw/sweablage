@@ -26,7 +26,7 @@ import { logger } from '../../shared';
 const autoService = new AutoService();
 
 const findAutos = (modell: string) => {
-    const suchkriterium = modell === undefined ? {} : { modell: modell };
+    const suchkriterium = modell === undefined ? {} : { modell };
     return autoService.find(suchkriterium);
 };
 
@@ -58,7 +58,7 @@ const deleteAuto = async (id: string) => {
 // Queries passend zu "type Query" in typeDefs.ts
 const query: IResolverObject = {
     // Autos suchen, ggf. mit Modell als Suchkriterium
-    buecher: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
+    autos: (_: unknown, { modell }: ModellCriteria) => findAutos(modell),
     // Ein Auto mit einer bestimmten ID suchen
     auto: (_: unknown, { id }: IdCriteria) => autoService.findById(id),
 };

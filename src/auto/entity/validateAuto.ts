@@ -20,7 +20,7 @@ import type { Document } from 'mongoose';
 import { MAX_RATING } from '../../shared';
 import validator from 'validator';
 
-const { isUUID, isURL, isSERIENNR } = validator;
+const { isUUID, isURL, isISBN } = validator;
 
 export interface ValidationErrorMsg {
     id?: string;
@@ -35,8 +35,14 @@ export interface ValidationErrorMsg {
 /* eslint-disable no-null/no-null */
 export const validateAuto = (auto: Document) => {
     const err: ValidationErrorMsg = {};
-    const { modell, art, rating, hersteller, seriennr, homepage } = auto as Document &
-        AutoData;
+    const {
+        modell,
+        art,
+        rating,
+        hersteller,
+        seriennr,
+        homepage,
+    } = auto as Document & AutoData;
 
     const autoDocument = auto;
     if (!autoDocument.isNew && !isUUID(autoDocument._id)) {
@@ -63,21 +69,20 @@ export const validateAuto = (auto: Document) => {
     }
     if (hersteller === undefined || hersteller === null || hersteller === '') {
         err.hersteller = 'Der Hersteller des Autos muss gesetzt sein.';
-    } else if (hersteller !== 'VW_HERSTELLER' && hersteller !== 'PORSCHE_HERSTELLER') {
+    } else if (
+        hersteller !== 'VW_HERSTELLER' &&
+        hersteller !== 'PORSCHE_HERSTELLER'
+    ) {
         err.hersteller =
             'Der Hersteller eines Autos muss VW_HERSTELLER oder PORSCHE_HERSTELLER sein.';
     }
     if (
         seriennr !== undefined &&
         seriennr !== null &&
-        (typeof seriennr !== 'string' || !isSERIENNR(seriennr))
+        (typeof seriennr !== 'string' || !isISBN(seriennr))
     ) {
         err.seriennr = 'Keine gueltige Seriennummer.';
     }
-    // Falls "preis" ein string ist: Pruefung z.B. 12.30
-    // if (isPresent(preis) && !isCurrency(`${preis}`)) {
-    //     err.preis = `${preis} ist kein gueltiger Preis`
-    // }
     if (
         homepage !== undefined &&
         homepage !== null &&

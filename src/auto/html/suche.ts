@@ -22,5 +22,5 @@ const autoService = new AutoService();
 
 export const suche = async (_: Request, res: Response) => {
     const autos = await autoService.find();
-    res.render('suche', { title: 'Suche', autos: autos });
+    res.render('suche', { title: 'Suche', autos });
 };

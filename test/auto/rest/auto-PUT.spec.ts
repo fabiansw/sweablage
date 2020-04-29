@@ -170,7 +170,7 @@ describe('PUT /autos/:id', () => {
         const { art, rating, hersteller, seriennr } = body;
 
         expect(art).to.be.equal(
-            'Die Art eines Autoes muss MECHANIK oder AUTOMATIK sein.',
+            'Die Art eines Autos muss MECHANIK oder AUTOMATIK sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(hersteller).to.be.equal(

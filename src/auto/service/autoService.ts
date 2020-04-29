@@ -90,7 +90,7 @@ export class AutoService {
             return tmpQuery.sort('modell').lean<AutoData>();
         }
 
-        const { modell, javascript, typescript, ...dbQuery } = query;
+        const { modell, tempomat, autopilot, ...dbQuery } = query;
 
         // Autos zur Query (= JSON-Objekt durch Express) asynchron suchen
         if (modell !== undefined) {
@@ -105,13 +105,13 @@ export class AutoService {
             }
         }
 
-        // z.B. {javascript: true, typescript: true}
+        // z.B. {tempomat: true, autopilot: true}
         const assistenzsysteme = [];
-        if (javascript === 'true') {
-            assistenzsysteme.push('JAVASCRIPT');
+        if (tempomat === 'true') {
+            assistenzsysteme.push('TEMPOMAT');
         }
-        if (typescript === 'true') {
-            assistenzsysteme.push('TYPESCRIPT');
+        if (autopilot === 'true') {
+            assistenzsysteme.push('AUTOPILOT');
         }
         if (assistenzsysteme.length === 0) {
             delete dbQuery.assistenzsysteme;

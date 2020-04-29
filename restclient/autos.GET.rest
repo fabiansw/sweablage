@@ -33,11 +33,11 @@ https://{{host}}/autos?seriennr=978-3897225831
 ### Suche mit vorhandenen Assistenzsystemen
 https://{{host}}/autos?autopilot=true&tempomat=true
 
-### Suche mit vorhandenem Assistenzsystemen "AUTOPILOT"
-https://{{host}}/autos?javascript=true
-
 ### Suche mit vorhandenem Assistenzsystemen "TEMPOMAT"
-https://{{host}}/autos?&typescript=true
+https://{{host}}/autos?tempomat=true
+
+### Suche mit vorhandenem Assistenzsystemen "AUTOPILOT"
+https://{{host}}/autos?&autopilot=true
 
 ### Suche mit gueltiger Art
 https://{{host}}/autos?art=MECHANIK

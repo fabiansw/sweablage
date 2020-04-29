@@ -126,7 +126,7 @@ describe('GET /autos', () => {
         // JSON-Array mit mind. 1 JSON-Objekt
         expect(body).not.to.be.empty;
 
-        // Jedes Auto hat im Array der Assistenzsysteme "javascript"
+        // Jedes Auto hat im Array der Assistenzsysteme "tempomat"
         body.map(
             (auto: AutoData) => auto.assistenzsysteme,
         ).forEach((s: Array<string>) =>

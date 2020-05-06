@@ -2,7 +2,10 @@
 ### N e t z w e r k   -  V e r b i n d u n g   n o t w e n d i g
 ###
 
-@host = localhost:8443
+### Localhost
+// @host = localhost:8443
+### Heroku
+@host = boiling-fjord-85923.herokuapp.com
 
 ### Suche Modell und Art von allen Autos
 POST https://localhost:8443/api

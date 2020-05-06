@@ -99,7 +99,7 @@ describe('POST /autos', () => {
         server.close();
         // "open handle error (TCPSERVERWRAP)" bei Supertest mit Jest vermeiden
         // https://github.com/visionmedia/supertest/issues/520
-        await new Promise(resolve => setTimeout(() => resolve(), 1000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
+        await new Promise(resolve => setTimeout(() => resolve(), 5000)); // eslint-disable-line @typescript-eslint/no-magic-numbers
     });
 
     test('Neues Auto', async () => {

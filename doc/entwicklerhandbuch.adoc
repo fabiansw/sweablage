@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = Entwicklerhandbuch
-Jürgen Zimmermann <Juergen.Zimmermann@HS-Karlsruhe.de>
+Gruppe12 <Gruppe12@HS-Karlsruhe.de>
 :doctype: book
 :toc: left
 :sectanchors:
@@ -32,16 +32,13 @@ Jürgen Zimmermann <Juergen.Zimmermann@HS-Karlsruhe.de>
 // http://de.plantuml.com/component.html
 // https://github.com/odrotbohm/asciidoctor-plantuml
 
-IMPORTANT: Copyright (C) 2020 - present Jürgen Zimmermann, Hochschule Karlsruhe. +
-           Free use of this software is granted under the terms of the
-           GNU General Public License (GPL) v3. +
-           For the full text of the license, see the http://www.gnu.org/licenses/gpl-3.0.html[license] file.
+IMPORTANT: Copyright (C) 2020 - present Gruppe12, Hochschule Karlsruhe. +
 
 == Der Applikationsserver
 
 === Der Applikationsserver im Überblick
 
-bla bla
+Testtext Testtext
 
 .Use Cases
 [plantuml,use-cases,svg]
@@ -49,7 +46,7 @@ bla bla
 include::use-cases.puml[]
 ----
 
-bla bla
+Testtext Testtext
 
 .Komponentendiagramm
 [plantuml,komponenten,svg]
@@ -59,7 +56,7 @@ include::komponenten.puml[]
 
 === Die REST-Schnittstelle
 
-bla bla
+Testtext Testtext
 
 .Handler für die REST-Schnittstelle
 [plantuml,AutoHandler,svg]
@@ -69,7 +66,7 @@ include::AutoHandler.puml[]
 
 === Der Anwendungskern
 
-bla bla
+Testtext Testtext
 
 .Anwendungskern mit Mongoose
 [plantuml,AutoService,svg]
@@ -79,7 +76,7 @@ include::AutoService.puml[]
 
 === Interface für Entities und das Mongoose-Model
 
-bla bla
+Testtext Testtext
 
 .Entity, Model und Schema
 [plantuml,Auto,svg]

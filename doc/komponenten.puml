@@ -78,6 +78,6 @@ RESTClient ~~> [Router]
 [AutoService] --> [sendMail]
 [nodemailer] ~~> [Mailserver]
 
-footer (c) Jürgen Zimmermann
+footer (c) Gruppe12
 
 @enduml

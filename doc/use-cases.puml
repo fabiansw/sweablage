@@ -32,6 +32,6 @@ rectangle kunde {
     Admin --> (Datei herunterladen)
 }
 
-footer (c) Jürgen Zimmermann
+footer (c) Gruppe12
 
 @enduml

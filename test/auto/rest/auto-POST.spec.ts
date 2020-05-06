@@ -222,5 +222,5 @@ describe('POST /autos', () => {
         expect(Object.entries(body)).to.be.empty;
     });
 
-    test.todo('Test mit abgelaufenem Token');
+    //test.todo('Test mit abgelaufenem Token');
 });
